@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Missão 13º Salário</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            margin: 50px auto;
+            width: 300px;
+            border-radius: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🎮 Missão 13º Salário</h2>
+
+    <label>Salário mensal:</label><br>
+    <input type="number" id="salario"><br><br>
+
+    <label>Meses trabalhados:</label><br>
+    <input type="number" id="meses" max="12"><br><br>
+
+    <button onclick="calcular()">Calcular meu 13º</button>
+
+    <h3 id="resultado"></h3>
+    <div id="escolhas"></div>
+</div>
+
+<script>
+function calcular() {
+    let salario = parseFloat(document.getElementById("salario").value);
+    let meses = parseInt(document.getElementById("meses").value);
+
+    let decimo = (salario / 12) * meses;
+
+    document.getElementById("resultado").innerHTML =
+        "Você vai receber aproximadamente R$ " + decimo.toFixed(2);
+
+    document.getElementById("escolhas").innerHTML =
+        "<p>O que você vai fazer?</p>" +
+        "<button onclick='escolha(1)'>Gastar tudo</button><br>" +
+        "<button onclick='escolha(2)'>Guardar parte</button><br>" +
+        "<button onclick='escolha(3)'>Investir</button><br>" +
+        "<button onclick='escolha(4)'>Pagar dívidas</button>";
+}
+
+function escolha(opcao) {
+    let mensagem = "";
+
+    if(opcao == 1) {
+        mensagem = "⚠️ Cuidado! Gastar tudo pode te deixar sem reserva.";
+    } else if(opcao == 2) {
+        mensagem = "✅ Ótimo! Criar reserva é uma escolha inteligente.";
+    } else if(opcao == 3) {
+        mensagem = "📈 Excelente! Investir pode aumentar seu dinheiro.";
+    } else {
+        mensagem = "💳 Muito bem! Quitar dívidas reduz juros.";
+    }
+
+    document.getElementById("escolhas").innerHTML += "<p>" + mensagem + "</p>";
+}
+</script>
+
+</body>
+</html>
